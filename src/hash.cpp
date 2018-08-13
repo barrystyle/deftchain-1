@@ -1,4 +1,5 @@
 // Copyright (c) 2013-2017 The Bitcoin Core developers
+// Copyright (c) 2018 The Deftchain developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -245,3 +246,4 @@ uint64_t SipHashUint256Extra(uint64_t k0, uint64_t k1, const uint256& val, uint3
     SIPROUND;
     return v0 ^ v1 ^ v2 ^ v3;
 }
+

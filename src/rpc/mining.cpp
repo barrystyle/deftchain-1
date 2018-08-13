@@ -1,5 +1,6 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2017 The Bitcoin Core developers
+// Copyright (c) 2018 The Deftchain developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -159,7 +160,7 @@ UniValue generatetoaddress(const JSONRPCRequest& request)
             "\nMine blocks immediately to a specified address (before the RPC call returns)\n"
             "\nArguments:\n"
             "1. nblocks      (numeric, required) How many blocks are generated immediately.\n"
-            "2. address      (string, required) The address to send the newly generated bitcoin to.\n"
+            "2. address      (string, required) The address to send the newly generated deftchain to.\n"
             "3. maxtries     (numeric, optional) How many iterations to try (default = 1000000).\n"
             "\nResult:\n"
             "[ blockhashes ]     (array) hashes of blocks generated\n"
@@ -201,7 +202,7 @@ UniValue getmininginfo(const JSONRPCRequest& request)
             "  \"pooledtx\": n              (numeric) The size of the mempool\n"
             "  \"chain\": \"xxxx\",           (string) current network name as defined in BIP70 (main, test, regtest)\n"
             "  \"warnings\": \"...\"          (string) any network and blockchain warnings\n"
-            "  \"errors\": \"...\"            (string) DEPRECATED. Same as warnings. Only shown when bitcoind is started with -deprecatedrpc=getmininginfo\n"
+            "  \"errors\": \"...\"            (string) DEPRECATED. Same as warnings. Only shown when deftchaind is started with -deprecatedrpc=getmininginfo\n"
             "}\n"
             "\nExamples:\n"
             + HelpExampleCli("getmininginfo", "")
@@ -299,10 +300,10 @@ UniValue getblocktemplate(const JSONRPCRequest& request)
             "\nIf the request parameters include a 'mode' key, that is used to explicitly select between the default 'template' request or a 'proposal'.\n"
             "It returns data needed to construct a block to work on.\n"
             "For full specification, see BIPs 22, 23, 9, and 145:\n"
-            "    https://github.com/bitcoin/bips/blob/master/bip-0022.mediawiki\n"
-            "    https://github.com/bitcoin/bips/blob/master/bip-0023.mediawiki\n"
-            "    https://github.com/bitcoin/bips/blob/master/bip-0009.mediawiki#getblocktemplate_changes\n"
-            "    https://github.com/bitcoin/bips/blob/master/bip-0145.mediawiki\n"
+            "    https://github.com/deftchain/bips/blob/master/bip-0022.mediawiki\n"
+            "    https://github.com/deftchain/bips/blob/master/bip-0023.mediawiki\n"
+            "    https://github.com/deftchain/bips/blob/master/bip-0009.mediawiki#getblocktemplate_changes\n"
+            "    https://github.com/deftchain/bips/blob/master/bip-0145.mediawiki\n"
 
             "\nArguments:\n"
             "1. template_request         (json object, optional) A json object in the following spec\n"
@@ -706,7 +707,7 @@ UniValue submitblock(const JSONRPCRequest& request)
         throw std::runtime_error(
             "submitblock \"hexdata\"  ( \"dummy\" )\n"
             "\nAttempts to submit new block to network.\n"
-            "See https://en.bitcoin.it/wiki/BIP_0022 for full specification.\n"
+            "See https://en.deftchain.it/wiki/BIP_0022 for full specification.\n"
 
             "\nArguments\n"
             "1. \"hexdata\"        (string, required) the hex-encoded block data to submit\n"
@@ -794,7 +795,7 @@ UniValue estimatefee(const JSONRPCRequest& request)
 
     if (!IsDeprecatedRPCEnabled("estimatefee")) {
         throw JSONRPCError(RPC_METHOD_DEPRECATED, "estimatefee is deprecated and will be fully removed in v0.17. "
-            "To use estimatefee in v0.16, restart bitcoind with -deprecatedrpc=estimatefee.\n"
+            "To use estimatefee in v0.16, restart deftchaind with -deprecatedrpc=estimatefee.\n"
             "Projects should transition to using estimatesmartfee before upgrading to v0.17");
     }
 
@@ -997,3 +998,4 @@ void RegisterMiningRPCCommands(CRPCTable &t)
     for (unsigned int vcidx = 0; vcidx < ARRAYLEN(commands); vcidx++)
         t.appendCommand(commands[vcidx].name, &commands[vcidx]);
 }
+

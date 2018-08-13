@@ -1,0 +1,33 @@
+# /etc/conf.d/deftchaind: config file for /etc/init.d/deftchaind
+
+# Config file location
+#DEFTCHAIND_CONFIGFILE="/etc/deftchain/deftchain.conf"
+
+# What directory to write pidfile to?  (created and owned by $DEFTCHAIND_USER)
+#DEFTCHAIND_PIDDIR="/var/run/deftchaind"
+
+# What filename to give the pidfile
+#DEFTCHAIND_PIDFILE="${DEFTCHAIND_PIDDIR}/deftchaind.pid"
+
+# Where to write deftchaind data (be mindful that the blockchain is large)
+#DEFTCHAIND_DATADIR="/var/lib/deftchaind"
+
+# User and group to own deftchaind process
+#DEFTCHAIND_USER="deftchain"
+#DEFTCHAIND_GROUP="deftchain"
+
+# Path to deftchaind executable
+#DEFTCHAIND_BIN="/usr/bin/deftchaind"
+
+# Nice value to run deftchaind under
+#DEFTCHAIND_NICE=0
+
+# Additional options (avoid -conf and -datadir, use flags above)
+#DEFTCHAIND_OPTS=""
+
+# The timeout in seconds OpenRC will wait for deftchaind to terminate
+# after a SIGTERM has been raised.
+# Note that this will be mapped as argument to start-stop-daemon's
+# '--retry' option, which means you can specify a retry schedule
+# here. For more information see man 8 start-stop-daemon.
+DEFTCHAIND_SIGTERM_TIMEOUT=60

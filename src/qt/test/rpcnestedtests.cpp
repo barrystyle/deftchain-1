@@ -1,4 +1,5 @@
 // Copyright (c) 2016-2017 The Bitcoin Core developers
+// Copyright (c) 2018 The Deftchain developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -11,7 +12,7 @@
 #include <rpc/register.h>
 #include <rpc/server.h>
 #include <qt/rpcconsole.h>
-#include <test/test_bitcoin.h>
+#include <test/test_deftchain.h>
 #include <univalue.h>
 #include <util.h>
 
@@ -131,3 +132,4 @@ void RPCNestedTests::rpcNestedTests()
     QVERIFY_EXCEPTION_THROWN(RPCConsole::RPCExecuteCommandLine(result, "rpcNestedTest(abc,,)"), std::runtime_error); //don't tollerate empty arguments when using ,
 #endif
 }
+

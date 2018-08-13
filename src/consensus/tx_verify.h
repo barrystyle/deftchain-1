@@ -1,9 +1,10 @@
 // Copyright (c) 2017-2017 The Bitcoin Core developers
+// Copyright (c) 2018 The Deftchain developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_CONSENSUS_TX_VERIFY_H
-#define BITCOIN_CONSENSUS_TX_VERIFY_H
+#ifndef DEFTCHAIN_CONSENSUS_TX_VERIFY_H
+#define DEFTCHAIN_CONSENSUS_TX_VERIFY_H
 
 #include <amount.h>
 
@@ -78,4 +79,5 @@ bool EvaluateSequenceLocks(const CBlockIndex& block, std::pair<int, int64_t> loc
  */
 bool SequenceLocks(const CTransaction &tx, int flags, std::vector<int>* prevHeights, const CBlockIndex& block);
 
-#endif // BITCOIN_CONSENSUS_TX_VERIFY_H
+#endif // DEFTCHAIN_CONSENSUS_TX_VERIFY_H
+

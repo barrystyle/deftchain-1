@@ -1,9 +1,10 @@
 // Copyright (c) 2015-2017 The Bitcoin Core developers
+// Copyright (c) 2018 The Deftchain developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_SCHEDULER_H
-#define BITCOIN_SCHEDULER_H
+#ifndef DEFTCHAIN_SCHEDULER_H
+#define DEFTCHAIN_SCHEDULER_H
 
 //
 // NOTE:
@@ -113,3 +114,4 @@ public:
 };
 
 #endif
+

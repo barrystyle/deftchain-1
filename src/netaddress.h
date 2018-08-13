@@ -1,12 +1,13 @@
 // Copyright (c) 2009-2017 The Bitcoin Core developers
+// Copyright (c) 2018 The Deftchain developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_NETADDRESS_H
-#define BITCOIN_NETADDRESS_H
+#ifndef DEFTCHAIN_NETADDRESS_H
+#define DEFTCHAIN_NETADDRESS_H
 
 #if defined(HAVE_CONFIG_H)
-#include <config/bitcoin-config.h>
+#include <config/deftchain-config.h>
 #endif
 
 #include <compat.h>
@@ -174,4 +175,5 @@ class CService : public CNetAddr
         }
 };
 
-#endif // BITCOIN_NETADDRESS_H
+#endif // DEFTCHAIN_NETADDRESS_H
+

@@ -1,9 +1,10 @@
 // Copyright (c) 2016-2017 The Bitcoin Core developers
+// Copyright (c) 2018 The Deftchain developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_SUPPORT_LOCKEDPOOL_H
-#define BITCOIN_SUPPORT_LOCKEDPOOL_H
+#ifndef DEFTCHAIN_SUPPORT_LOCKEDPOOL_H
+#define DEFTCHAIN_SUPPORT_LOCKEDPOOL_H
 
 #include <stdint.h>
 #include <list>
@@ -228,4 +229,5 @@ private:
     static std::once_flag init_flag;
 };
 
-#endif // BITCOIN_SUPPORT_LOCKEDPOOL_H
+#endif // DEFTCHAIN_SUPPORT_LOCKEDPOOL_H
+

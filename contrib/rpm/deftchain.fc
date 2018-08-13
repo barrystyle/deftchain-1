@@ -1,0 +1,8 @@
+/usr/bin/deftchain-cli		--	gen_context(system_u:object_r:deftchain_exec_t,s0)
+/usr/sbin/deftchaind		--	gen_context(system_u:object_r:deftchain_exec_t,s0)
+/usr/lib(64)?/deftchain/deftchaind		--	gen_context(system_u:object_r:deftchain_exec_t,s0)
+
+/etc/deftchain(/.*)?		gen_context(system_u:object_r:deftchain_conf_t,s0)
+/var/lib/deftchain(/.*)?		gen_context(system_u:object_r:deftchain_var_lib_t,s0)
+
+(/var)?/run/deftchaind(/.*)?   gen_context(system_u:object_r:deftchain_var_run_t,s0)

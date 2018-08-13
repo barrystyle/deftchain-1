@@ -1,4 +1,5 @@
 // Copyright (c) 2015-2017 The Bitcoin Core developers
+// Copyright (c) 2018 The Deftchain developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -32,3 +33,4 @@ static void Trig(benchmark::State& state)
 }
 
 BENCHMARK(Trig, 12 * 1000 * 1000);
+

@@ -1,4 +1,5 @@
 // Copyright (c) 2009-2015 The Bitcoin Core developers
+// Copyright (c) 2018 The Deftchain developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -458,3 +459,4 @@ iEBFUrBDJZU+UEezGwr7/zoECjo5ZY3PmtZcM2sILNjyweJF6XVzGqTxUw6pN6sW\
 XR2T3Gy2LzRvhVA25QgGqpz0/juS2BtmNbsZPkN9gMMwKimgzc+PuCzmEKwPK9cQ\
 YQ==\
 ";
+

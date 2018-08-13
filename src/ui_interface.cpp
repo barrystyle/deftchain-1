@@ -1,4 +1,5 @@
 // Copyright (c) 2010-2017 The Bitcoin Core developers
+// Copyright (c) 2018 The Deftchain developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -27,3 +28,4 @@ std::string AmountErrMsg(const char* const optname, const std::string& strValue)
 {
     return strprintf(_("Invalid amount for -%s=<amount>: '%s'"), optname, strValue);
 }
+

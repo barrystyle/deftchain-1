@@ -1,4 +1,5 @@
 // Copyright (c) 2014-2017 The Bitcoin Core developers
+// Copyright (c) 2018 The Deftchain developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -290,3 +291,4 @@ CRIPEMD160& CRIPEMD160::Reset()
     ripemd160::Initialize(s);
     return *this;
 }
+

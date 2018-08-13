@@ -1,10 +1,11 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2017 The Bitcoin Core developers
+// Copyright (c) 2018 The Deftchain developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_RPCPROTOCOL_H
-#define BITCOIN_RPCPROTOCOL_H
+#ifndef DEFTCHAIN_RPCPROTOCOL_H
+#define DEFTCHAIN_RPCPROTOCOL_H
 
 #include <fs.h>
 
@@ -39,7 +40,7 @@ enum RPCErrorCode
     // It should not be used for application-layer errors.
     RPC_METHOD_NOT_FOUND = -32601,
     RPC_INVALID_PARAMS   = -32602,
-    // RPC_INTERNAL_ERROR should only be used for genuine errors in bitcoind
+    // RPC_INTERNAL_ERROR should only be used for genuine errors in deftchaind
     // (for example datadir corruption).
     RPC_INTERNAL_ERROR   = -32603,
     RPC_PARSE_ERROR      = -32700,
@@ -101,4 +102,5 @@ void DeleteAuthCookie();
 /** Parse JSON-RPC batch reply into a vector */
 std::vector<UniValue> JSONRPCProcessBatchReply(const UniValue &in, size_t num);
 
-#endif // BITCOIN_RPCPROTOCOL_H
+#endif // DEFTCHAIN_RPCPROTOCOL_H
+

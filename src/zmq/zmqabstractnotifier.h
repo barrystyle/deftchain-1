@@ -1,9 +1,10 @@
 // Copyright (c) 2015-2017 The Bitcoin Core developers
+// Copyright (c) 2018 The Deftchain developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_ZMQ_ZMQABSTRACTNOTIFIER_H
-#define BITCOIN_ZMQ_ZMQABSTRACTNOTIFIER_H
+#ifndef DEFTCHAIN_ZMQ_ZMQABSTRACTNOTIFIER_H
+#define DEFTCHAIN_ZMQ_ZMQABSTRACTNOTIFIER_H
 
 #include <zmq/zmqconfig.h>
 
@@ -41,4 +42,5 @@ protected:
     std::string address;
 };
 
-#endif // BITCOIN_ZMQ_ZMQABSTRACTNOTIFIER_H
+#endif // DEFTCHAIN_ZMQ_ZMQABSTRACTNOTIFIER_H
+

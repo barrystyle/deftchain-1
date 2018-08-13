@@ -1,11 +1,12 @@
 // Copyright (c) 2011-2017 The Bitcoin Core developers
+// Copyright (c) 2018 The Deftchain developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <qt/receiverequestdialog.h>
 #include <qt/forms/ui_receiverequestdialog.h>
 
-#include <qt/bitcoinunits.h>
+#include <qt/deftchainunits.h>
 #include <qt/guiconstants.h>
 #include <qt/guiutil.h>
 #include <qt/optionsmodel.h>
@@ -21,7 +22,7 @@
 #endif
 
 #if defined(HAVE_CONFIG_H)
-#include <config/bitcoin-config.h> /* for USE_QRCODE */
+#include <config/deftchain-config.h> /* for USE_QRCODE */
 #endif
 
 #ifdef USE_QRCODE
@@ -210,3 +211,4 @@ void ReceiveRequestDialog::on_btnCopyAddress_clicked()
 {
     GUIUtil::setClipboard(info.address);
 }
+

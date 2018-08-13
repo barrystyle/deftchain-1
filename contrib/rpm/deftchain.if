@@ -1,0 +1,157 @@
+
+## <summary>policy for deftchain</summary>
+
+
+########################################
+## <summary>
+##	Transition to deftchain.
+## </summary>
+## <param name="domain">
+## <summary>
+##	Domain allowed to transition.
+## </summary>
+## </param>
+#
+interface(`deftchain_domtrans',`
+	gen_require(`
+		type deftchain_t, deftchain_exec_t;
+	')
+
+	corecmd_search_bin($1)
+	domtrans_pattern($1, deftchain_exec_t, deftchain_t)
+')
+
+
+########################################
+## <summary>
+##	Execute deftchain server in the deftchain domain.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`deftchain_initrc_domtrans',`
+	gen_require(`
+		type deftchain_initrc_exec_t;
+	')
+
+	init_labeled_script_domtrans($1, deftchain_initrc_exec_t)
+')
+
+
+########################################
+## <summary>
+##	Search deftchain lib directories.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`deftchain_search_lib',`
+	gen_require(`
+		type deftchain_var_lib_t;
+	')
+
+	allow $1 deftchain_var_lib_t:dir search_dir_perms;
+	files_search_var_lib($1)
+')
+
+########################################
+## <summary>
+##	Read deftchain lib files.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`deftchain_read_lib_files',`
+	gen_require(`
+		type deftchain_var_lib_t;
+	')
+
+	files_search_var_lib($1)
+	read_files_pattern($1, deftchain_var_lib_t, deftchain_var_lib_t)
+')
+
+########################################
+## <summary>
+##	Manage deftchain lib files.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`deftchain_manage_lib_files',`
+	gen_require(`
+		type deftchain_var_lib_t;
+	')
+
+	files_search_var_lib($1)
+	manage_files_pattern($1, deftchain_var_lib_t, deftchain_var_lib_t)
+')
+
+########################################
+## <summary>
+##	Manage deftchain lib directories.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`deftchain_manage_lib_dirs',`
+	gen_require(`
+		type deftchain_var_lib_t;
+	')
+
+	files_search_var_lib($1)
+	manage_dirs_pattern($1, deftchain_var_lib_t, deftchain_var_lib_t)
+')
+
+
+########################################
+## <summary>
+##	All of the rules required to administrate
+##	a deftchain environment
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+## <param name="role">
+##	<summary>
+##	Role allowed access.
+##	</summary>
+## </param>
+## <rolecap/>
+#
+interface(`deftchain_admin',`
+	gen_require(`
+		type deftchain_t;
+		type deftchain_initrc_exec_t;
+		type deftchain_var_lib_t;
+	')
+
+	allow $1 deftchain_t:process { ptrace signal_perms };
+	ps_process_pattern($1, deftchain_t)
+
+	deftchain_initrc_domtrans($1)
+	domain_system_change_exemption($1)
+	role_transition $2 deftchain_initrc_exec_t system_r;
+	allow $2 system_r;
+
+	files_search_var_lib($1)
+	admin_pattern($1, deftchain_var_lib_t)
+
+')
+

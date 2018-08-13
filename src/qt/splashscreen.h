@@ -1,9 +1,10 @@
 // Copyright (c) 2011-2017 The Bitcoin Core developers
+// Copyright (c) 2018 The Deftchain developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_QT_SPLASHSCREEN_H
-#define BITCOIN_QT_SPLASHSCREEN_H
+#ifndef DEFTCHAIN_QT_SPLASHSCREEN_H
+#define DEFTCHAIN_QT_SPLASHSCREEN_H
 
 #include <functional>
 #include <QSplashScreen>
@@ -55,4 +56,5 @@ private:
     QList<CWallet*> connectedWallets;
 };
 
-#endif // BITCOIN_QT_SPLASHSCREEN_H
+#endif // DEFTCHAIN_QT_SPLASHSCREEN_H
+

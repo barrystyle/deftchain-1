@@ -1,9 +1,10 @@
 // Copyright (c) 2014-2016 The Bitcoin Core developers
+// Copyright (c) 2018 The Deftchain developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_CRYPTO_SHA512_H
-#define BITCOIN_CRYPTO_SHA512_H
+#ifndef DEFTCHAIN_CRYPTO_SHA512_H
+#define DEFTCHAIN_CRYPTO_SHA512_H
 
 #include <stdint.h>
 #include <stdlib.h>
@@ -25,4 +26,5 @@ public:
     CSHA512& Reset();
 };
 
-#endif // BITCOIN_CRYPTO_SHA512_H
+#endif // DEFTCHAIN_CRYPTO_SHA512_H
+

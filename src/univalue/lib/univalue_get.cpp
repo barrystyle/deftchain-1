@@ -1,5 +1,6 @@
 // Copyright 2014 BitPay Inc.
 // Copyright 2015 Bitcoin Core Developers
+// Copyright (c) 2018 The Deftchain developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -144,4 +145,5 @@ const UniValue& UniValue::get_array() const
         throw std::runtime_error("JSON value is not an array as expected");
     return *this;
 }
+
 

@@ -1,9 +1,10 @@
 // Copyright (c) 2016-2017 The Bitcoin Core developers
+// Copyright (c) 2018 The Deftchain developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_SUPPORT_EVENTS_H
-#define BITCOIN_SUPPORT_EVENTS_H
+#ifndef DEFTCHAIN_SUPPORT_EVENTS_H
+#define DEFTCHAIN_SUPPORT_EVENTS_H
 
 #include <ios>
 #include <memory>
@@ -53,4 +54,5 @@ inline raii_evhttp_connection obtain_evhttp_connection_base(struct event_base* b
     return result;
 }
 
-#endif // BITCOIN_SUPPORT_EVENTS_H
+#endif // DEFTCHAIN_SUPPORT_EVENTS_H
+

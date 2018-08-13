@@ -1,10 +1,11 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2017 The Bitcoin Core developers
+// Copyright (c) 2018 The Deftchain developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_HASH_H
-#define BITCOIN_HASH_H
+#ifndef DEFTCHAIN_HASH_H
+#define DEFTCHAIN_HASH_H
 
 #include <crypto/ripemd160.h>
 #include <crypto/sha256.h>
@@ -229,4 +230,5 @@ public:
 uint64_t SipHashUint256(uint64_t k0, uint64_t k1, const uint256& val);
 uint64_t SipHashUint256Extra(uint64_t k0, uint64_t k1, const uint256& val, uint32_t extra);
 
-#endif // BITCOIN_HASH_H
+#endif // DEFTCHAIN_HASH_H
+

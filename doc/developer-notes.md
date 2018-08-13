@@ -153,7 +153,7 @@ to see it.
 
 **testnet and regtest modes**
 
-Run with the -testnet option to run with "play bitcoins" on the test network, if you
+Run with the -testnet option to run with "play deftchains" on the test network, if you
 are testing multi-machine code that needs to operate across the internet.
 
 If you are testing something that can run on one machine, run with the -regtest option.
@@ -171,15 +171,15 @@ are held, and adds warnings to the debug.log file if inconsistencies are detecte
 
 Valgrind is a programming tool for memory debugging, memory leak detection, and
 profiling. The repo contains a Valgrind suppressions file
-([`valgrind.supp`](https://github.com/bitcoin/bitcoin/blob/master/contrib/valgrind.supp))
+([`valgrind.supp`](https://github.com/deftchain/deftchain/blob/master/contrib/valgrind.supp))
 which includes known Valgrind warnings in our dependencies that cannot be fixed
 in-tree. Example use:
 
 ```shell
-$ valgrind --suppressions=contrib/valgrind.supp src/test/test_bitcoin
+$ valgrind --suppressions=contrib/valgrind.supp src/test/test_deftchain
 $ valgrind --suppressions=contrib/valgrind.supp --leak-check=full \
-      --show-leak-kinds=all src/test/test_bitcoin --log_level=test_suite
-$ valgrind -v --leak-check=full src/bitcoind -printtoconsole
+      --show-leak-kinds=all src/test/test_deftchain --log_level=test_suite
+$ valgrind -v --leak-check=full src/deftchaind -printtoconsole
 ```
 
 **compiling for test coverage**
@@ -195,7 +195,7 @@ To enable LCOV report generation during test runs:
 make
 make cov
 
-# A coverage report will now be accessible at `./test_bitcoin.coverage/index.html`.
+# A coverage report will now be accessible at `./test_deftchain.coverage/index.html`.
 ```
 
 Locking/mutex usage notes
@@ -242,7 +242,7 @@ Threads
 
 - ThreadRPCServer : Remote procedure call handler, listens on port 8332 for connections and services them.
 
-- BitcoinMiner : Generates bitcoins (if wallet is enabled).
+- BitcoinMiner : Generates deftchains (if wallet is enabled).
 
 - Shutdown : Does an orderly shutdown of everything.
 
@@ -531,10 +531,10 @@ Current subtrees include:
   - Upstream at https://github.com/google/leveldb ; Maintained by Google, but open important PRs to Core to avoid delay
 
 - src/libsecp256k1
-  - Upstream at https://github.com/bitcoin-core/secp256k1/ ; actively maintaned by Core contributors.
+  - Upstream at https://github.com/deftchain-core/secp256k1/ ; actively maintaned by Core contributors.
 
 - src/crypto/ctaes
-  - Upstream at https://github.com/bitcoin-core/ctaes ; actively maintained by Core contributors.
+  - Upstream at https://github.com/deftchain-core/ctaes ; actively maintained by Core contributors.
 
 - src/univalue
   - Upstream at https://github.com/jgarzik/univalue ; report important PRs to Core to avoid delay.
@@ -582,7 +582,7 @@ Git and GitHub tips
 
         [remote "upstream-pull"]
                 fetch = +refs/pull/*:refs/remotes/upstream-pull/*
-                url = git@github.com:bitcoin/bitcoin.git
+                url = git@github.com:deftchain/deftchain.git
 
   This will add an `upstream-pull` remote to your git repository, which can be fetched using `git fetch --all`
   or `git fetch upstream-pull`. Afterwards, you can use `upstream-pull/NUMBER/head` in arguments to `git show`,
@@ -648,7 +648,7 @@ A few guidelines for introducing and reviewing new RPC interfaces:
 - Try not to overload methods on argument type. E.g. don't make `getblock(true)` and `getblock("hash")`
   do different things.
 
-  - *Rationale*: This is impossible to use with `bitcoin-cli`, and can be surprising to users.
+  - *Rationale*: This is impossible to use with `deftchain-cli`, and can be surprising to users.
 
   - *Exception*: Some RPC calls can take both an `int` and `bool`, most notably when a bool was switched
     to a multi-value, or due to other historical reasons. **Always** have false map to 0 and
@@ -667,7 +667,7 @@ A few guidelines for introducing and reviewing new RPC interfaces:
 
 - Add every non-string RPC argument `(method, idx, name)` to the table `vRPCConvertParams` in `rpc/client.cpp`.
 
-  - *Rationale*: `bitcoin-cli` and the GUI debug console use this table to determine how to
+  - *Rationale*: `deftchain-cli` and the GUI debug console use this table to determine how to
     convert a plaintext command line to JSON. If the types don't match, the method can be unusable
     from there.
 

@@ -1,4 +1,5 @@
 // Copyright (c) 2011-2017 The Bitcoin Core developers
+// Copyright (c) 2018 The Deftchain developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -6,7 +7,7 @@
 #include <qt/forms/ui_coincontroldialog.h>
 
 #include <qt/addresstablemodel.h>
-#include <qt/bitcoinunits.h>
+#include <qt/deftchainunits.h>
 #include <qt/guiutil.h>
 #include <qt/optionsmodel.h>
 #include <qt/platformstyle.h>
@@ -122,7 +123,7 @@ CoinControlDialog::CoinControlDialog(const PlatformStyle *_platformStyle, QWidge
     connect(ui->pushButtonSelectAll, SIGNAL(clicked()), this, SLOT(buttonSelectAllClicked()));
 
     // change coin control first column label due Qt4 bug.
-    // see https://github.com/bitcoin/bitcoin/issues/5716
+    // see https://github.com/deftchain/deftchain/issues/5716
     ui->treeWidget->headerItem()->setText(COLUMN_CHECKBOX, QString());
 
     ui->treeWidget->setColumnWidth(COLUMN_CHECKBOX, 84);
@@ -665,7 +666,7 @@ void CoinControlDialog::updateView()
             {
                 sAddress = QString::fromStdString(EncodeDestination(outputAddress));
 
-                // if listMode or change => show bitcoin address. In tree mode, address is not shown again for direct wallet address outputs
+                // if listMode or change => show deftchain address. In tree mode, address is not shown again for direct wallet address outputs
                 if (!treeMode || (!(sAddress == sWalletAddress)))
                     itemOutput->setText(COLUMN_ADDRESS, sAddress);
             }
@@ -739,3 +740,4 @@ void CoinControlDialog::updateView()
     sortView(sortColumn, sortOrder);
     ui->treeWidget->setEnabled(true);
 }
+

@@ -1,10 +1,11 @@
 // Copyright (c) 2011-2017 The Bitcoin Core developers
+// Copyright (c) 2018 The Deftchain developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <qt/transactiondesc.h>
 
-#include <qt/bitcoinunits.h>
+#include <qt/deftchainunits.h>
 #include <qt/guiutil.h>
 #include <qt/paymentserver.h>
 #include <qt/transactionrecord.h>
@@ -233,7 +234,7 @@ QString TransactionDesc::toHTML(CWallet *wallet, CWalletTx &wtx, TransactionReco
     strHTML += "<b>" + tr("Transaction total size") + ":</b> " + QString::number(wtx.tx->GetTotalSize()) + " bytes<br>";
     strHTML += "<b>" + tr("Output index") + ":</b> " + QString::number(rec->getOutputIndex()) + "<br>";
 
-    // Message from normal bitcoin:URI (bitcoin:123...?message=example)
+    // Message from normal deftchain:URI (deftchain:123...?message=example)
     for (const std::pair<std::string, std::string>& r : wtx.vOrderForm)
         if (r.first == "Message")
             strHTML += "<br><b>" + tr("Message") + ":</b><br>" + GUIUtil::HtmlEscape(r.second, true) + "<br>";
@@ -308,3 +309,4 @@ QString TransactionDesc::toHTML(CWallet *wallet, CWalletTx &wtx, TransactionReco
     strHTML += "</font></html>";
     return strHTML;
 }
+

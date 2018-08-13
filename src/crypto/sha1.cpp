@@ -1,4 +1,5 @@
 // Copyright (c) 2014-2017 The Bitcoin Core developers
+// Copyright (c) 2018 The Deftchain developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -197,3 +198,4 @@ CSHA1& CSHA1::Reset()
     sha1::Initialize(s);
     return *this;
 }
+

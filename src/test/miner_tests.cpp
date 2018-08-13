@@ -1,4 +1,5 @@
 // Copyright (c) 2011-2017 The Bitcoin Core developers
+// Copyright (c) 2018 The Deftchain developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -18,7 +19,7 @@
 #include <util.h>
 #include <utilstrencodings.h>
 
-#include <test/test_bitcoin.h>
+#include <test/test_deftchain.h>
 
 #include <memory>
 
@@ -521,3 +522,4 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity)
 }
 
 BOOST_AUTO_TEST_SUITE_END()
+

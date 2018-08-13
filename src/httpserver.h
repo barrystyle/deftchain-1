@@ -1,9 +1,10 @@
 // Copyright (c) 2015-2017 The Bitcoin Core developers
+// Copyright (c) 2018 The Deftchain developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_HTTPSERVER_H
-#define BITCOIN_HTTPSERVER_H
+#ifndef DEFTCHAIN_HTTPSERVER_H
+#define DEFTCHAIN_HTTPSERVER_H
 
 #include <string>
 #include <stdint.h>
@@ -150,4 +151,5 @@ private:
 
 std::string urlDecode(const std::string &urlEncoded);
 
-#endif // BITCOIN_HTTPSERVER_H
+#endif // DEFTCHAIN_HTTPSERVER_H
+

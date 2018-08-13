@@ -1,4 +1,5 @@
 // Copyright (c) 2009-2017 The Bitcoin Core developers
+// Copyright (c) 2018 The Deftchain developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -59,3 +60,4 @@ bool glibcxx_sanity_test()
 {
     return sanity_test_widen('a') && sanity_test_list(100) && sanity_test_range_fmt();
 }
+

@@ -1,4 +1,5 @@
 // Copyright (c) 2011-2017 The Bitcoin Core developers
+// Copyright (c) 2018 The Deftchain developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -11,7 +12,7 @@
 #include <random.h>
 #include <script/standard.h>
 #include <script/sign.h>
-#include <test/test_bitcoin.h>
+#include <test/test_deftchain.h>
 #include <utiltime.h>
 #include <core_io.h>
 #include <keystore.h>
@@ -369,3 +370,4 @@ BOOST_FIXTURE_TEST_CASE(checkinputs_test, TestChain100Setup)
 }
 
 BOOST_AUTO_TEST_SUITE_END()
+

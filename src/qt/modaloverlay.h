@@ -1,9 +1,10 @@
 // Copyright (c) 2016-2017 The Bitcoin Core developers
+// Copyright (c) 2018 The Deftchain developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_QT_MODALOVERLAY_H
-#define BITCOIN_QT_MODALOVERLAY_H
+#ifndef DEFTCHAIN_QT_MODALOVERLAY_H
+#define DEFTCHAIN_QT_MODALOVERLAY_H
 
 #include <QDateTime>
 #include <QWidget>
@@ -47,4 +48,5 @@ private:
     bool userClosed;
 };
 
-#endif // BITCOIN_QT_MODALOVERLAY_H
+#endif // DEFTCHAIN_QT_MODALOVERLAY_H
+

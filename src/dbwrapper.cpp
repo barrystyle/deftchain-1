@@ -1,4 +1,5 @@
 // Copyright (c) 2012-2017 The Bitcoin Core developers
+// Copyright (c) 2018 The Deftchain developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -41,7 +42,7 @@ public:
                 if (p < limit) {
                     va_list backup_ap;
                     va_copy(backup_ap, ap);
-                    // Do not use vsnprintf elsewhere in bitcoin source code, see above.
+                    // Do not use vsnprintf elsewhere in deftchain source code, see above.
                     p += vsnprintf(p, limit - p, format, backup_ap);
                     va_end(backup_ap);
                 }
@@ -215,3 +216,4 @@ const std::vector<unsigned char>& GetObfuscateKey(const CDBWrapper &w)
 }
 
 } // namespace dbwrapper_private
+

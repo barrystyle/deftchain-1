@@ -1,16 +1,17 @@
 // Copyright (c) 2011-2017 The Bitcoin Core developers
+// Copyright (c) 2018 The Deftchain developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include <config/bitcoin-config.h>
+#include <config/deftchain-config.h>
 #endif
 
 #include <qt/utilitydialog.h>
 
 #include <qt/forms/ui_helpmessagedialog.h>
 
-#include <qt/bitcoingui.h>
+#include <qt/deftchaingui.h>
 #include <qt/clientmodel.h>
 #include <qt/guiconstants.h>
 #include <qt/intro.h>
@@ -70,14 +71,14 @@ HelpMessageDialog::HelpMessageDialog(QWidget *parent, bool about) :
     } else {
         setWindowTitle(tr("Command-line options"));
         QString header = tr("Usage:") + "\n" +
-            "  bitcoin-qt [" + tr("command-line options") + "]                     " + "\n";
+            "  deftchain-qt [" + tr("command-line options") + "]                     " + "\n";
         QTextCursor cursor(ui->helpMessage->document());
         cursor.insertText(version);
         cursor.insertBlock();
         cursor.insertText(header);
         cursor.insertBlock();
 
-        std::string strUsage = HelpMessage(HMM_BITCOIN_QT);
+        std::string strUsage = HelpMessage(HMM_DEFTCHAIN_QT);
         const bool showDebug = gArgs.GetBoolArg("-help-debug", false);
         strUsage += HelpMessageGroup(tr("UI Options:").toStdString());
         if (showDebug) {
@@ -191,3 +192,4 @@ void ShutdownWindow::closeEvent(QCloseEvent *event)
 {
     event->ignore();
 }
+

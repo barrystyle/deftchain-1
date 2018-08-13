@@ -1,4 +1,5 @@
 // Copyright (c) 2012-2017 The Bitcoin Core developers
+// Copyright (c) 2018 The Deftchain developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -257,3 +258,4 @@ const Coin& AccessByTxid(const CCoinsViewCache& view, const uint256& txid)
     }
     return coinEmpty;
 }
+

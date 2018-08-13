@@ -1,9 +1,10 @@
 // Copyright (c) 2011-2017 The Bitcoin Core developers
+// Copyright (c) 2018 The Deftchain developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include <config/bitcoin-config.h>
+#include <config/deftchain-config.h>
 #endif
 
 #include <qt/rpcconsole.h>
@@ -1228,3 +1229,4 @@ void RPCConsole::setTabFocus(enum TabTypes tabType)
 {
     ui->tabWidget->setCurrentIndex(tabType);
 }
+

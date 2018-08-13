@@ -1,4 +1,5 @@
 // Copyright (c) 2014-2017 The Bitcoin Core developers
+// Copyright (c) 2018 The Deftchain developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -27,7 +28,7 @@ NetworkStyle::NetworkStyle(const QString &_appName, const int iconColorHueShift,
     titleAddText(qApp->translate("SplashScreen", _titleAddText))
 {
     // load pixmap
-    QPixmap pixmap(":/icons/bitcoin");
+    QPixmap pixmap(":/icons/deftchain");
 
     if(iconColorHueShift != 0 && iconColorSaturationReduction != 0)
     {
@@ -94,3 +95,4 @@ const NetworkStyle *NetworkStyle::instantiate(const QString &networkId)
     }
     return 0;
 }
+

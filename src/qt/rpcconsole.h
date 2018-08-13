@@ -1,9 +1,10 @@
 // Copyright (c) 2011-2017 The Bitcoin Core developers
+// Copyright (c) 2018 The Deftchain developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_QT_RPCCONSOLE_H
-#define BITCOIN_QT_RPCCONSOLE_H
+#ifndef DEFTCHAIN_QT_RPCCONSOLE_H
+#define DEFTCHAIN_QT_RPCCONSOLE_H
 
 #include <qt/guiutil.h>
 #include <qt/peertablemodel.h>
@@ -156,4 +157,5 @@ private:
     void updateNetworkState();
 };
 
-#endif // BITCOIN_QT_RPCCONSOLE_H
+#endif // DEFTCHAIN_QT_RPCCONSOLE_H
+

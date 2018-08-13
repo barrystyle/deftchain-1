@@ -1,9 +1,9 @@
 Bitcoin Core integration/staging tree
 =====================================
 
-[![Build Status](https://travis-ci.org/bitcoin/bitcoin.svg?branch=master)](https://travis-ci.org/bitcoin/bitcoin)
+[![Build Status](https://travis-ci.org/deftchain/deftchain.svg?branch=master)](https://travis-ci.org/deftchain/deftchain)
 
-https://bitcoincore.org
+https://deftchaincore.org
 
 What is Bitcoin?
 ----------------
@@ -15,8 +15,8 @@ out collectively by the network. Bitcoin Core is the name of open source
 software which enables the use of this currency.
 
 For more information, as well as an immediately useable, binary version of
-the Bitcoin Core software, see https://bitcoin.org/en/download, or read the
-[original whitepaper](https://bitcoincore.org/bitcoin.pdf).
+the Bitcoin Core software, see https://deftchain.org/en/download, or read the
+[original whitepaper](https://deftchaincore.org/deftchain.pdf).
 
 License
 -------
@@ -28,16 +28,16 @@ Development Process
 -------------------
 
 The `master` branch is regularly built and tested, but is not guaranteed to be
-completely stable. [Tags](https://github.com/bitcoin/bitcoin/tags) are created
+completely stable. [Tags](https://github.com/deftchain/deftchain/tags) are created
 regularly to indicate new official, stable release versions of Bitcoin Core.
 
 The contribution workflow is described in [CONTRIBUTING.md](CONTRIBUTING.md).
 
-The developer [mailing list](https://lists.linuxfoundation.org/mailman/listinfo/bitcoin-dev)
+The developer [mailing list](https://lists.linuxfoundation.org/mailman/listinfo/deftchain-dev)
 should be used to discuss complicated or controversial changes before working
 on a patch set.
 
-Developer IRC can be found on Freenode at #bitcoin-core-dev.
+Developer IRC can be found on Freenode at #deftchain-core-dev.
 
 Testing
 -------
@@ -71,7 +71,7 @@ Translations
 ------------
 
 Changes to translations as well as new translations can be submitted to
-[Bitcoin Core's Transifex page](https://www.transifex.com/projects/p/bitcoin/).
+[Bitcoin Core's Transifex page](https://www.transifex.com/projects/p/deftchain/).
 
 Translations are periodically pulled from Transifex and merged into the git repository. See the
 [translation process](doc/translation_process.md) for details on how this works.
@@ -79,4 +79,4 @@ Translations are periodically pulled from Transifex and merged into the git repo
 **Important**: We do not accept translation changes as GitHub pull requests because the next
 pull from Transifex would automatically overwrite them again.
 
-Translators should also subscribe to the [mailing list](https://groups.google.com/forum/#!forum/bitcoin-translators).
+Translators should also subscribe to the [mailing list](https://groups.google.com/forum/#!forum/deftchain-translators).

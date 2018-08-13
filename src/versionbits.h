@@ -1,9 +1,10 @@
 // Copyright (c) 2016-2017 The Bitcoin Core developers
+// Copyright (c) 2018 The Deftchain developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_CONSENSUS_VERSIONBITS
-#define BITCOIN_CONSENSUS_VERSIONBITS
+#ifndef DEFTCHAIN_CONSENSUS_VERSIONBITS
+#define DEFTCHAIN_CONSENSUS_VERSIONBITS
 
 #include <chain.h>
 #include <map>
@@ -78,3 +79,4 @@ int VersionBitsStateSinceHeight(const CBlockIndex* pindexPrev, const Consensus::
 uint32_t VersionBitsMask(const Consensus::Params& params, Consensus::DeploymentPos pos);
 
 #endif
+

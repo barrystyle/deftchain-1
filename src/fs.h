@@ -1,9 +1,10 @@
 // Copyright (c) 2017 The Bitcoin Core developers
+// Copyright (c) 2018 The Deftchain developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_FS_H
-#define BITCOIN_FS_H
+#ifndef DEFTCHAIN_FS_H
+#define DEFTCHAIN_FS_H
 
 #include <stdio.h>
 #include <string>
@@ -21,4 +22,5 @@ namespace fsbridge {
     FILE *freopen(const fs::path& p, const char *mode, FILE *stream);
 };
 
-#endif // BITCOIN_FS_H
+#endif // DEFTCHAIN_FS_H
+

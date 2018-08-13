@@ -1,5 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2017 The Bitcoin Core developers
+// Copyright (c) 2018 The Deftchain developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -82,8 +83,8 @@
 // Application startup time (used for uptime calculation)
 const int64_t nStartupTime = GetTime();
 
-const char * const BITCOIN_CONF_FILENAME = "bitcoin.conf";
-const char * const BITCOIN_PID_FILENAME = "bitcoind.pid";
+const char * const DEFTCHAIN_CONF_FILENAME = "deftchain.conf";
+const char * const DEFTCHAIN_PID_FILENAME = "deftchaind.pid";
 const char * const DEFAULT_DEBUGLOGFILE = "debug.log";
 
 ArgsManager gArgs;
@@ -558,7 +559,7 @@ static std::string FormatException(const std::exception* pex, const char* pszThr
     char pszModule[MAX_PATH] = "";
     GetModuleFileNameA(nullptr, pszModule, sizeof(pszModule));
 #else
-    const char* pszModule = "bitcoin";
+    const char* pszModule = "deftchain";
 #endif
     if (pex)
         return strprintf(
@@ -580,7 +581,7 @@ fs::path GetDefaultDataDir()
     // Windows < Vista: C:\Documents and Settings\Username\Application Data\Bitcoin
     // Windows >= Vista: C:\Users\Username\AppData\Roaming\Bitcoin
     // Mac: ~/Library/Application Support/Bitcoin
-    // Unix: ~/.bitcoin
+    // Unix: ~/.deftchain
 #ifdef WIN32
     // Windows
     return GetSpecialFolderPath(CSIDL_APPDATA) / "Bitcoin";
@@ -596,7 +597,7 @@ fs::path GetDefaultDataDir()
     return pathRet / "Library/Application Support/Bitcoin";
 #else
     // Unix
-    return pathRet / ".bitcoin";
+    return pathRet / ".deftchain";
 #endif
 #endif
 }
@@ -658,7 +659,7 @@ void ArgsManager::ReadConfigFile(const std::string& confPath)
 {
     fs::ifstream streamConfig(GetConfigFile(confPath));
     if (!streamConfig.good())
-        return; // No bitcoin.conf file is OK
+        return; // No deftchain.conf file is OK
 
     {
         LOCK(cs_args);
@@ -667,7 +668,7 @@ void ArgsManager::ReadConfigFile(const std::string& confPath)
 
         for (boost::program_options::detail::config_file_iterator it(streamConfig, setOptions), end; it != end; ++it)
         {
-            // Don't overwrite existing settings so command line settings override bitcoin.conf
+            // Don't overwrite existing settings so command line settings override deftchain.conf
             std::string strKey = std::string("-") + it->string_key;
             std::string strValue = it->value[0];
             InterpretNegativeSetting(strKey, strValue);
@@ -686,7 +687,7 @@ void ArgsManager::ReadConfigFile(const std::string& confPath)
 #ifndef WIN32
 fs::path GetPidFile()
 {
-    fs::path pathPidFile(gArgs.GetArg("-pid", BITCOIN_PID_FILENAME));
+    fs::path pathPidFile(gArgs.GetArg("-pid", DEFTCHAIN_PID_FILENAME));
     if (!pathPidFile.is_complete()) pathPidFile = GetDataDir() / pathPidFile;
     return pathPidFile;
 }
@@ -959,3 +960,4 @@ int64_t GetStartupTime()
 {
     return nStartupTime;
 }
+

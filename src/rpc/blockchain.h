@@ -1,9 +1,10 @@
 // Copyright (c) 2017 The Bitcoin Core developers
+// Copyright (c) 2018 The Deftchain developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_RPC_BLOCKCHAIN_H
-#define BITCOIN_RPC_BLOCKCHAIN_H
+#ifndef DEFTCHAIN_RPC_BLOCKCHAIN_H
+#define DEFTCHAIN_RPC_BLOCKCHAIN_H
 
 class CBlock;
 class CBlockIndex;
@@ -34,4 +35,5 @@ UniValue mempoolToJSON(bool fVerbose = false);
 UniValue blockheaderToJSON(const CBlockIndex* blockindex);
 
 #endif
+
 

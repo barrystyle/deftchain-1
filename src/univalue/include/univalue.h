@@ -1,5 +1,6 @@
 // Copyright 2014 BitPay Inc.
 // Copyright 2015 Bitcoin Core Developers
+// Copyright (c) 2018 The Deftchain developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -301,3 +302,4 @@ extern const UniValue NullUniValue;
 const UniValue& find_value( const UniValue& obj, const std::string& name);
 
 #endif // __UNIVALUE_H__
+

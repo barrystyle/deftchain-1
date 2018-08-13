@@ -1,4 +1,5 @@
 // Copyright (c) 2015-2017 The Bitcoin Core developers
+// Copyright (c) 2018 The Deftchain developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -60,3 +61,4 @@ static void CCheckQueueSpeedPrevectorJob(benchmark::State& state)
     tg.join_all();
 }
 BENCHMARK(CCheckQueueSpeedPrevectorJob, 1400);
+

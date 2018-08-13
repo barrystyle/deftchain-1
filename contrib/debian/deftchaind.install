@@ -1,0 +1,2 @@
+usr/local/bin/deftchaind usr/bin
+usr/local/bin/deftchain-cli usr/bin

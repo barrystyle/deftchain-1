@@ -1,0 +1,6 @@
+usr/local/bin/deftchain-qt usr/bin
+share/pixmaps/deftchain32.xpm usr/share/pixmaps
+share/pixmaps/deftchain16.xpm usr/share/pixmaps
+share/pixmaps/deftchain128.png usr/share/pixmaps
+debian/deftchain-qt.desktop usr/share/applications
+debian/deftchain-qt.protocol usr/share/kde4/services/

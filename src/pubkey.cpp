@@ -1,4 +1,5 @@
 // Copyright (c) 2009-2017 The Bitcoin Core developers
+// Copyright (c) 2018 The Deftchain developers
 // Copyright (c) 2017 The Zcash developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
@@ -300,3 +301,4 @@ ECCVerifyHandle::~ECCVerifyHandle()
         secp256k1_context_verify = nullptr;
     }
 }
+

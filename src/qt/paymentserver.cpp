@@ -1,10 +1,11 @@
 // Copyright (c) 2011-2017 The Bitcoin Core developers
+// Copyright (c) 2018 The Deftchain developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <qt/paymentserver.h>
 
-#include <qt/bitcoinunits.h>
+#include <qt/deftchainunits.h>
 #include <qt/guiutil.h>
 #include <qt/optionsmodel.h>
 
@@ -47,15 +48,15 @@
 #include <QUrlQuery>
 #endif
 
-const int BITCOIN_IPC_CONNECT_TIMEOUT = 1000; // milliseconds
-const QString BITCOIN_IPC_PREFIX("bitcoin:");
+const int DEFTCHAIN_IPC_CONNECT_TIMEOUT = 1000; // milliseconds
+const QString DEFTCHAIN_IPC_PREFIX("deftchain:");
 // BIP70 payment protocol messages
 const char* BIP70_MESSAGE_PAYMENTACK = "PaymentACK";
 const char* BIP70_MESSAGE_PAYMENTREQUEST = "PaymentRequest";
 // BIP71 payment protocol media types
-const char* BIP71_MIMETYPE_PAYMENT = "application/bitcoin-payment";
-const char* BIP71_MIMETYPE_PAYMENTACK = "application/bitcoin-paymentack";
-const char* BIP71_MIMETYPE_PAYMENTREQUEST = "application/bitcoin-paymentrequest";
+const char* BIP71_MIMETYPE_PAYMENT = "application/deftchain-payment";
+const char* BIP71_MIMETYPE_PAYMENTACK = "application/deftchain-paymentack";
+const char* BIP71_MIMETYPE_PAYMENTREQUEST = "application/deftchain-paymentrequest";
 
 struct X509StoreDeleter {
       void operator()(X509_STORE* b) {
@@ -208,11 +209,11 @@ void PaymentServer::ipcParseCommandLine(int argc, char* argv[])
         if (arg.startsWith("-"))
             continue;
 
-        // If the bitcoin: URI contains a payment request, we are not able to detect the
+        // If the deftchain: URI contains a payment request, we are not able to detect the
         // network as that would require fetching and parsing the payment request.
         // That means clicking such an URI which contains a testnet payment request
         // will start a mainnet instance and throw a "wrong network" error.
-        if (arg.startsWith(BITCOIN_IPC_PREFIX, Qt::CaseInsensitive)) // bitcoin: URI
+        if (arg.startsWith(DEFTCHAIN_IPC_PREFIX, Qt::CaseInsensitive)) // deftchain: URI
         {
             savedPaymentRequests.append(arg);
 
@@ -270,7 +271,7 @@ bool PaymentServer::ipcSendCommandLine()
     {
         QLocalSocket* socket = new QLocalSocket();
         socket->connectToServer(ipcServerName(), QIODevice::WriteOnly);
-        if (!socket->waitForConnected(BITCOIN_IPC_CONNECT_TIMEOUT))
+        if (!socket->waitForConnected(DEFTCHAIN_IPC_CONNECT_TIMEOUT))
         {
             delete socket;
             socket = nullptr;
@@ -285,7 +286,7 @@ bool PaymentServer::ipcSendCommandLine()
 
         socket->write(block);
         socket->flush();
-        socket->waitForBytesWritten(BITCOIN_IPC_CONNECT_TIMEOUT);
+        socket->waitForBytesWritten(DEFTCHAIN_IPC_CONNECT_TIMEOUT);
         socket->disconnectFromServer();
 
         delete socket;
@@ -308,7 +309,7 @@ PaymentServer::PaymentServer(QObject* parent, bool startLocalServer) :
     GOOGLE_PROTOBUF_VERIFY_VERSION;
 
     // Install global event filter to catch QFileOpenEvents
-    // on Mac: sent when you click bitcoin: links
+    // on Mac: sent when you click deftchain: links
     // other OSes: helpful when dealing with payment request files
     if (parent)
         parent->installEventFilter(this);
@@ -325,7 +326,7 @@ PaymentServer::PaymentServer(QObject* parent, bool startLocalServer) :
         if (!uriServer->listen(name)) {
             // constructor is called early in init, so don't use "Q_EMIT message()" here
             QMessageBox::critical(0, tr("Payment request error"),
-                tr("Cannot start bitcoin: click-to-pay handler"));
+                tr("Cannot start deftchain: click-to-pay handler"));
         }
         else {
             connect(uriServer, SIGNAL(newConnection()), this, SLOT(handleURIConnection()));
@@ -340,7 +341,7 @@ PaymentServer::~PaymentServer()
 }
 
 //
-// OSX-specific way of handling bitcoin: URIs and PaymentRequest mime types.
+// OSX-specific way of handling deftchain: URIs and PaymentRequest mime types.
 // Also used by paymentservertests.cpp and when opening a payment request file
 // via "Open URI..." menu entry.
 //
@@ -365,7 +366,7 @@ void PaymentServer::initNetManager()
         return;
     delete netManager;
 
-    // netManager is used to fetch paymentrequests given in bitcoin: URIs
+    // netManager is used to fetch paymentrequests given in deftchain: URIs
     netManager = new QNetworkAccessManager(this);
 
     QNetworkProxy proxy;
@@ -405,7 +406,7 @@ void PaymentServer::handleURIOrFile(const QString& s)
         return;
     }
 
-    if (s.startsWith(BITCOIN_IPC_PREFIX, Qt::CaseInsensitive)) // bitcoin: URI
+    if (s.startsWith(DEFTCHAIN_IPC_PREFIX, Qt::CaseInsensitive)) // deftchain: URI
     {
 #if QT_VERSION < 0x050000
         QUrl uri(s);
@@ -560,7 +561,7 @@ bool PaymentServer::processPaymentRequest(const PaymentRequestPlus& request, Sen
             addresses.append(QString::fromStdString(EncodeDestination(dest)));
         }
         else if (!recipient.authenticatedMerchant.isEmpty()) {
-            // Unauthenticated payment requests to custom bitcoin addresses are not supported
+            // Unauthenticated payment requests to custom deftchain addresses are not supported
             // (there is no good way to tell the user where they are paying in a way they'd
             // have a chance of understanding).
             Q_EMIT message(tr("Payment request rejected"),
@@ -807,3 +808,4 @@ X509_STORE* PaymentServer::getCertStore()
 {
     return certStore.get();
 }
+

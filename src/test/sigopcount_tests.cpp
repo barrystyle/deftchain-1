@@ -1,4 +1,5 @@
 // Copyright (c) 2012-2017 The Bitcoin Core developers
+// Copyright (c) 2018 The Deftchain developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -9,7 +10,7 @@
 #include <script/script.h>
 #include <script/standard.h>
 #include <uint256.h>
-#include <test/test_bitcoin.h>
+#include <test/test_deftchain.h>
 
 #include <vector>
 
@@ -230,3 +231,4 @@ BOOST_AUTO_TEST_CASE(GetTxSigOpCost)
 }
 
 BOOST_AUTO_TEST_SUITE_END()
+
