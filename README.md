@@ -1,82 +1,35 @@
-Bitcoin Core integration/staging tree
-=====================================
+## deftchain 0.16
+_demonstrating skill and intelligence_
 
-[![Build Status](https://travis-ci.org/deftchain/deftchain.svg?branch=master)](https://travis-ci.org/deftchain/deftchain)
 
-https://deftchaincore.org
+- built on bitcoin 0.16
+- pow algorithm: balloon512 (with 5 variants, concurrently mineable; no per-algo daemon instances)
+- retarget algorithm: shortened and tuned dual_kgw3
+- block time: 4 minutes
+- block maturity: 30 blocks
+- block subsidy: 8.5 DEFT per block
+- emission decay: block reward halves every 150,000 blocks
+- emission simulation: included as 'deftreward.c'
+- coin marketcap: maximum of 3 million DEFT
+- coin swap: block 1 will contain 500,000 DEFT; which can be redeemed only by original users of the first deft release.
+             coins present on the original chain, before height 30,000 will be accepted via crosschain transaction.
 
-What is Bitcoin?
-----------------
 
-Bitcoin is an experimental digital currency that enables instant payments to
-anyone, anywhere in the world. Bitcoin uses peer-to-peer technology to operate
-with no central authority: managing transactions and issuing money are carried
-out collectively by the network. Bitcoin Core is the name of open source
-software which enables the use of this currency.
+_what it is_
 
-For more information, as well as an immediately useable, binary version of
-the Bitcoin Core software, see https://deftchain.org/en/download, or read the
-[original whitepaper](https://deftchaincore.org/deftchain.pdf).
+deftchain is an experimental digital currency, which allows users to roll out their own individual blockchain,
+by holding an unspent transaction of 2500 DEFT in their wallet, similar to a masternode collateral payment. the
+users blockchain will exist and function as long as the transaction is held; allowing the creation, storage or
+transmission of a users own currency.
 
-License
--------
 
-Bitcoin Core is released under the terms of the MIT license. See [COPYING](COPYING) for more
-information or see https://opensource.org/licenses/MIT.
+_why restart the chain_
 
-Development Process
--------------------
+the original deft release was promoted as a cpu-mineable/gpu-resistant currency, where the original balloon cpu hashing
+algorithm (after widespread community gpu development), still managed to maintain a ratio of approx 1:4 (cpu/gpu) advantage.
+unfortunately an early oversight where both internal hashing/pow hashing algorithm were set to balloon caused poor wallet
+performance, potentially breaking the pub/private address pairing if a fork were introduced to remedy this error.
 
-The `master` branch is regularly built and tested, but is not guaranteed to be
-completely stable. [Tags](https://github.com/deftchain/deftchain/tags) are created
-regularly to indicate new official, stable release versions of Bitcoin Core.
+the opportunity was taken to 'harden' the pow algorithm and rectify the wallet's performance, with lessons learnt from a
+public release, as well as implementing the 'sidechain as a service' functionality paradigm.
 
-The contribution workflow is described in [CONTRIBUTING.md](CONTRIBUTING.md).
-
-The developer [mailing list](https://lists.linuxfoundation.org/mailman/listinfo/deftchain-dev)
-should be used to discuss complicated or controversial changes before working
-on a patch set.
-
-Developer IRC can be found on Freenode at #deftchain-core-dev.
-
-Testing
--------
-
-Testing and code review is the bottleneck for development; we get more pull
-requests than we can review and test on short notice. Please be patient and help out by testing
-other people's pull requests, and remember this is a security-critical project where any mistake might cost people
-lots of money.
-
-### Automated Testing
-
-Developers are strongly encouraged to write [unit tests](src/test/README.md) for new code, and to
-submit new unit tests for old code. Unit tests can be compiled and run
-(assuming they weren't disabled in configure) with: `make check`. Further details on running
-and extending unit tests can be found in [/src/test/README.md](/src/test/README.md).
-
-There are also [regression and integration tests](/test), written
-in Python, that are run automatically on the build server.
-These tests can be run (if the [test dependencies](/test) are installed) with: `test/functional/test_runner.py`
-
-The Travis CI system makes sure that every pull request is built for Windows, Linux, and OS X, and that unit/sanity tests are run automatically.
-
-### Manual Quality Assurance (QA) Testing
-
-Changes should be tested by somebody other than the developer who wrote the
-code. This is especially important for large or high-risk changes. It is useful
-to add a test plan to the pull request description if testing the changes is
-not straightforward.
-
-Translations
-------------
-
-Changes to translations as well as new translations can be submitted to
-[Bitcoin Core's Transifex page](https://www.transifex.com/projects/p/deftchain/).
-
-Translations are periodically pulled from Transifex and merged into the git repository. See the
-[translation process](doc/translation_process.md) for details on how this works.
-
-**Important**: We do not accept translation changes as GitHub pull requests because the next
-pull from Transifex would automatically overwrite them again.
-
-Translators should also subscribe to the [mailing list](https://groups.google.com/forum/#!forum/deftchain-translators).
