@@ -16,7 +16,6 @@ namespace Consensus {
 
 enum DeploymentPos
 {
-    DEPLOYMENT_TESTDUMMY,
     DEPLOYMENT_CSV, // Deployment of BIP68, BIP112, and BIP113.
     DEPLOYMENT_SEGWIT, // Deployment of BIP141, BIP143, and BIP147.
     // NOTE: Also add new deployments to VersionBitsDeploymentInfo in versionbits.cpp
@@ -48,32 +47,23 @@ struct BIP9Deployment {
  * Parameters that influence chain consensus.
  */
 struct Params {
+
     uint256 hashGenesisBlock;
-    int nSubsidyHalvingInterval;
-    /** Block height at which BIP16 becomes active */
-    int BIP16Height;
-    /** Block height and hash at which BIP34 becomes active */
-    int BIP34Height;
+    int BIP16Height = 1;
+    int BIP34Height = 10;
     uint256 BIP34Hash;
-    /** Block height at which BIP65 becomes active */
-    int BIP65Height;
-    /** Block height at which BIP66 becomes active */
-    int BIP66Height;
-    /**
-     * Minimum blocks including miner confirmation of the total of 2016 blocks in a retargeting period,
-     * (nPowTargetTimespan / nPowTargetSpacing) which is also used for BIP9 deployments.
-     * Examples: 1916 for 95%, 1512 for testchains.
-     */
+    int BIP65Height = 10;
+    int BIP66Height = 10;
+
     uint32_t nRuleChangeActivationThreshold;
     uint32_t nMinerConfirmationWindow;
     BIP9Deployment vDeployments[MAX_VERSION_BITS_DEPLOYMENTS];
-    /** Proof of work parameters */
+
     uint256 powLimit;
     bool fPowAllowMinDifficultyBlocks;
     bool fPowNoRetargeting;
     int64_t nPowTargetSpacing;
-    int64_t nPowTargetTimespan;
-    int64_t DifficultyAdjustmentInterval() const { return nPowTargetTimespan / nPowTargetSpacing; }
+    int64_t DifficultyAdjustmentInterval() const { return 1; }
     uint256 nMinimumChainWork;
     uint256 defaultAssumeValid;
 };
