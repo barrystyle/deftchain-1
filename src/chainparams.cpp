@@ -4,19 +4,19 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
+#include <arith_uint256.h>
 #include <chainparams.h>
 #include <consensus/merkle.h>
-
 #include <tinyformat.h>
+#include <stdio.h>
 #include <util.h>
 #include <utilstrencodings.h>
-
 #include <assert.h>
 #include <memory>
 
 #include <chainparamsseeds.h>
 
-static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesisOutputScript, uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
+static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesisOutputScript, uint32_t nAlgo, uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
     CMutableTransaction txNew;
     txNew.nVersion = 1;
@@ -27,6 +27,7 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
     txNew.vout[0].scriptPubKey = genesisOutputScript;
 
     CBlock genesis;
+    genesis.nAlgo    = nAlgo;
     genesis.nTime    = nTime;
     genesis.nBits    = nBits;
     genesis.nNonce   = nNonce;
@@ -37,11 +38,11 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
     return genesis;
 }
 
-static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
+static CBlock CreateGenesisBlock(uint32_t nAlgo, uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
-    const char* pszTimestamp = "deftchain - learning from our mistakes and rebuilding; as is the intelligent way 2018.";
+    const char* pszTimestamp = "deftchain - lessons learnt 2018.";
     const CScript genesisOutputScript = CScript() << ParseHex("04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f") << OP_CHECKSIG;
-    return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward);
+    return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nAlgo, nTime, nNonce, nBits, nVersion, genesisReward);
 }
 
 void CChainParams::UpdateVersionBitsParameters(Consensus::DeploymentPos d, int64_t nStartTime, int64_t nTimeout)
@@ -61,9 +62,15 @@ class CMainParams : public CChainParams {
 public:
     CMainParams() {
 
+	// CBlock(hash=a66c96611afb8e0719b904084be11d6599daa4d87a32dcdab2a479850c5f6f5f, ver=0x00000001, hashPrevBlock=0000000000000000000000000000000000000000000000000000000000000000, hashMerkleRoot=8daa6d63f022e999a8d5bf389f3b7edc1ad48b89d139bafa2823d4b3d55bae55, nTime=1534566000, nBits=1f00ffff, nNonce=4800, auxChainHash=0000000000000000000000000000000000000000000000000000000000000000, auxBlockState=0000000000000000000000000000000000000000000000000000000000000000, auxBlockData=0000000000000000000000000000000000000000000000000000000000000000, nAlgo=0x00000000, vtx=1)
+        // CTransaction(hash=8daa6d63f0, ver=1, vin.size=1, vout.size=1, nLockTime=0)
+        // CTxIn(COutPoint(0000000000, 4294967295), coinbase 04ffff001d01042064656674636861696e202d206c6573736f6e73206c6561726e7420323031382e)
+        // CScriptWitness()
+        // CTxOut(nValue=0.00000000, scriptPubKey=4104678afdb0fe5548271967f1a671)
+
         // Mainnet parameters
         strNetworkID = "main";
-        consensus.powLimit = uint256S("00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
+        consensus.powLimit = uint256S("0000ffff000000000000000000000000000000000000000000000000000000000");
         consensus.nPowTargetSpacing = 10 * 60;
         consensus.fPowAllowMinDifficultyBlocks = false;
         consensus.fPowNoRetargeting = false;
@@ -81,32 +88,53 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = 1577660000;
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000000000000000000");
+        consensus.nMinimumChainWork = uint256S("0000000000000000000000000000000000000000000000000000000000000000");
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0x0000000000000000000000000000000000000000000000000000000000000000");
+        consensus.defaultAssumeValid = uint256S("0000000000000000000000000000000000000000000000000000000000000000");
 
         // Protocol comms parameters
-        pchMessageStart[0] = 0xf9;
-        pchMessageStart[1] = 0xbe;
-        pchMessageStart[2] = 0xb4;
-        pchMessageStart[3] = 0xd9;
-        nDefaultPort = 8333;
+        pchMessageStart[0] = 0xd2;
+        pchMessageStart[1] = 0xe0;
+        pchMessageStart[2] = 0xf1;
+        pchMessageStart[3] = 0x78;
+        nDefaultPort = 11263;
 
-        genesis = CreateGenesisBlock(1231006505, 2083236893, 0x1d00ffff, 1, 50 * COIN);
+        bool nMineNewGenesis = true;
+        uint32_t nGenesisTime = 1534566000;
+
+        // genesisblk
+        if (nMineNewGenesis == true) {
+           uint32_t nNonce = 0;
+           arith_uint256 nBestHash;
+           arith_uint256 nGenesisPoWHash;
+           genesis = CreateGenesisBlock(0, nGenesisTime, nNonce, 0x1f00ffff, 1, 0 * COIN);
+           nBestHash = UintToArith256(genesis.GetPoWHash());
+           while (true) {
+              nNonce++;
+              genesis = CreateGenesisBlock(0, nGenesisTime, nNonce, 0x1f00ffff, 1, 0 * COIN);
+              nGenesisPoWHash = UintToArith256(genesis.GetPoWHash());
+              if (nGenesisPoWHash < nBestHash) {
+                  nBestHash = nGenesisPoWHash;
+                  printf("nonce %08x besthash %s\n", nNonce, ArithToUint256(nBestHash).ToString().c_str());
+              }
+              if (nGenesisPoWHash < UintToArith256(consensus.powLimit)) break;
+           }
+           printf("genesis: %s \n", genesis.ToString().c_str());
+        }
+
+        genesis = CreateGenesisBlock(0, nGenesisTime, 4800, 0x1f00ffff, 1, 0 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f"));
-        assert(genesis.hashMerkleRoot == uint256S("0x4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b"));
+        assert(consensus.hashGenesisBlock == uint256S("a66c96611afb8e0719b904084be11d6599daa4d87a32dcdab2a479850c5f6f5f"));
+        assert(genesis.hashMerkleRoot == uint256S("8daa6d63f022e999a8d5bf389f3b7edc1ad48b89d139bafa2823d4b3d55bae55"));
 
         // vSeeds.emplace_back("");
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,0);
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,5);
-        base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,128);
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,31);  // D
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,58);  // Q
+        base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,159);
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x88, 0xB2, 0x1E};
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x88, 0xAD, 0xE4};
-
-        bech32_hrp = "bc";
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
 
@@ -168,10 +196,10 @@ public:
         pchMessageStart[3] = 0x07;
         nDefaultPort = 18333;
 
-        genesis = CreateGenesisBlock(1296688602, 414098458, 0x1d00ffff, 1, 50 * COIN);
+        genesis = CreateGenesisBlock(0, 1296688602, 414098458, 0x1d00ffff, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x0000000000000000000000000000000000000000000000000000000000000000"));
-        assert(genesis.hashMerkleRoot == uint256S("0x0000000000000000000000000000000000000000000000000000000000000000"));
+        //assert(consensus.hashGenesisBlock == uint256S("0x0000000000000000000000000000000000000000000000000000000000000000"));
+        //assert(genesis.hashMerkleRoot == uint256S("0x0000000000000000000000000000000000000000000000000000000000000000"));
 
         // vSeeds.emplace_back("");
 
@@ -180,8 +208,6 @@ public:
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,239);
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x35, 0x87, 0xCF};
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x35, 0x83, 0x94};
-
-        bech32_hrp = "tb";
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_test, pnSeed6_test + ARRAYLEN(pnSeed6_test));
 
@@ -242,10 +268,10 @@ public:
         pchMessageStart[3] = 0xda;
         nDefaultPort = 18444;
 
-        genesis = CreateGenesisBlock(1296688602, 2, 0x207fffff, 1, 50 * COIN);
+        genesis = CreateGenesisBlock(0, 1296688602, 2, 0x207fffff, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x0f9188f13cb7b2c71f2a335e3a4fc328bf5beb436012afca590b1a11466e2206"));
-        assert(genesis.hashMerkleRoot == uint256S("0x4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b"));
+        //assert(consensus.hashGenesisBlock == uint256S("0x0f9188f13cb7b2c71f2a335e3a4fc328bf5beb436012afca590b1a11466e2206"));
+        //assert(genesis.hashMerkleRoot == uint256S("0x4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b"));
 
         // vSeeds.emplace_back("");
 
@@ -271,7 +297,6 @@ public:
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x35, 0x87, 0xCF};
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x35, 0x83, 0x94};
 
-        bech32_hrp = "bcrt";
     }
 };
 

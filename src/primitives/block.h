@@ -31,7 +31,7 @@ public:
     uint256 auxChainHash;
     uint256 auxBlockState;
     uint256 auxBlockData;
-    uint32_t auxReserved;
+    uint32_t nAlgo;
 
     CBlockHeader()
     {
@@ -51,7 +51,7 @@ public:
         READWRITE(auxChainHash);
         READWRITE(auxBlockState);
         READWRITE(auxBlockData);
-        READWRITE(auxReserved);
+        READWRITE(nAlgo);
     }
 
     void SetNull()
@@ -65,13 +65,15 @@ public:
         auxChainHash.SetNull();
         auxBlockState.SetNull();
         auxBlockData.SetNull();
-        auxReserved = 0xffffffff;
+        nAlgo = 0;
     }
 
     bool IsNull() const
     {
         return (nBits == 0);
     }
+
+    uint32_t GetAlgo() const;
 
     uint256 GetHash() const;
 
@@ -131,7 +133,7 @@ public:
         block.auxChainHash   = auxChainHash;
         block.auxBlockState  = auxBlockState;
         block.auxBlockData   = auxBlockData;
-        block.auxReserved    = auxReserved;
+        block.nAlgo          = nAlgo;
         return block;
     }
 

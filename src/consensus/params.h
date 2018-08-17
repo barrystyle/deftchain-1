@@ -49,7 +49,7 @@ struct BIP9Deployment {
 struct Params {
 
     uint256 hashGenesisBlock;
-    int BIP16Height = 1;
+    int BIP16Height = 10;
     int BIP34Height = 10;
     uint256 BIP34Hash;
     int BIP65Height = 10;

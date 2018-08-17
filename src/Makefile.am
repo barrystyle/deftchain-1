@@ -274,7 +274,19 @@ crypto_libdeftchain_crypto_a_SOURCES = \
   crypto/sha256.cpp \
   crypto/sha256.h \
   crypto/sha512.cpp \
-  crypto/sha512.h
+  crypto/sha512.h \
+  crypto/balloon512.c \
+  crypto/balloon512.h \
+  crypto/sha3/sph_echo.c \
+  crypto/sha3/sph_echo.h \
+  crypto/sha3/sph_fugue.c \
+  crypto/sha3/sph_fugue.h \
+  crypto/sha3/sph_jh.c \
+  crypto/sha3/sph_jh.h \
+  crypto/sha3/sph_luffa.c \
+  crypto/sha3/sph_luffa.h \
+  crypto/sha3/sph_shavite.c \
+  crypto/sha3/sph_shavite.h
 
 if USE_ASM
 crypto_libdeftchain_crypto_a_SOURCES += crypto/sha256_sse4.cpp
