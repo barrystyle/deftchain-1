@@ -28,6 +28,10 @@ public:
     uint32_t nTime;
     uint32_t nBits;
     uint32_t nNonce;
+    uint256 auxChainHash;
+    uint256 auxBlockState;
+    uint256 auxBlockData;
+    uint32_t auxReserved;
 
     CBlockHeader()
     {
@@ -44,6 +48,10 @@ public:
         READWRITE(nTime);
         READWRITE(nBits);
         READWRITE(nNonce);
+        READWRITE(auxChainHash);
+        READWRITE(auxBlockState);
+        READWRITE(auxBlockData);
+        READWRITE(auxReserved);
     }
 
     void SetNull()
@@ -54,6 +62,10 @@ public:
         nTime = 0;
         nBits = 0;
         nNonce = 0;
+        auxChainHash.SetNull();
+        auxBlockState.SetNull();
+        auxBlockData.SetNull();
+        auxReserved = 0xffffffff;
     }
 
     bool IsNull() const
@@ -116,6 +128,10 @@ public:
         block.nTime          = nTime;
         block.nBits          = nBits;
         block.nNonce         = nNonce;
+        block.auxChainHash   = auxChainHash;
+        block.auxBlockState  = auxBlockState;
+        block.auxBlockData   = auxBlockData;
+        block.auxReserved    = auxReserved;
         return block;
     }
 
