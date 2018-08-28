@@ -62,15 +62,11 @@ class CMainParams : public CChainParams {
 public:
     CMainParams() {
 
-	// CBlock(hash=a66c96611afb8e0719b904084be11d6599daa4d87a32dcdab2a479850c5f6f5f, ver=0x00000001, hashPrevBlock=0000000000000000000000000000000000000000000000000000000000000000, hashMerkleRoot=8daa6d63f022e999a8d5bf389f3b7edc1ad48b89d139bafa2823d4b3d55bae55, nTime=1534566000, nBits=1f00ffff, nNonce=4800, auxChainHash=0000000000000000000000000000000000000000000000000000000000000000, auxBlockState=0000000000000000000000000000000000000000000000000000000000000000, auxBlockData=0000000000000000000000000000000000000000000000000000000000000000, nAlgo=0x00000000, vtx=1)
-        // CTransaction(hash=8daa6d63f0, ver=1, vin.size=1, vout.size=1, nLockTime=0)
-        // CTxIn(COutPoint(0000000000, 4294967295), coinbase 04ffff001d01042064656674636861696e202d206c6573736f6e73206c6561726e7420323031382e)
-        // CScriptWitness()
-        // CTxOut(nValue=0.00000000, scriptPubKey=4104678afdb0fe5548271967f1a671)
+	// genesis: CBlock(hash=5a7ab840e09820f3d81a5f9b1131a3b8f7e4eb86e3b59be9fa82fc35a74889a1, ver=0x00000001, hashPrevBlock=0000000000000000000000000000000000000000000000000000000000000000, hashMerkleRoot=8daa6d63f022e999a8d5bf389f3b7edc1ad48b89d139bafa2823d4b3d55bae55, nTime=1535435000, nBits=1f00ffff, nNonce=4294808742, auxChainHash=0000000000000000000000000000000000000000000000000000000000000000, auxBlockState=0000000000000000000000000000000000000000000000000000000000000000, auxBlockData=0000000000000000000000000000000000000000000000000000000000000000, nAlgo=0x00000000, vtx=1)
 
         // Mainnet parameters
         strNetworkID = "main";
-        consensus.powLimit = uint256S("0000ffff000000000000000000000000000000000000000000000000000000000");
+        consensus.powLimit = uint256S("0000ffff00000000000000000000000000000000000000000000000000000000");
         consensus.nPowTargetSpacing = 10 * 60;
         consensus.fPowAllowMinDifficultyBlocks = false;
         consensus.fPowNoRetargeting = false;
@@ -100,18 +96,18 @@ public:
         pchMessageStart[3] = 0x78;
         nDefaultPort = 11263;
 
-        bool nMineNewGenesis = true;
-        uint32_t nGenesisTime = 1534566000;
+        bool nMineNewGenesis = false;
+        uint32_t nGenesisTime = 1535435000;
 
         // genesisblk
         if (nMineNewGenesis == true) {
-           uint32_t nNonce = 0;
+           uint32_t nNonce = 4294967294;
            arith_uint256 nBestHash;
            arith_uint256 nGenesisPoWHash;
            genesis = CreateGenesisBlock(0, nGenesisTime, nNonce, 0x1f00ffff, 1, 0 * COIN);
            nBestHash = UintToArith256(genesis.GetPoWHash());
            while (true) {
-              nNonce++;
+              nNonce--;
               genesis = CreateGenesisBlock(0, nGenesisTime, nNonce, 0x1f00ffff, 1, 0 * COIN);
               nGenesisPoWHash = UintToArith256(genesis.GetPoWHash());
               if (nGenesisPoWHash < nBestHash) {
@@ -123,9 +119,9 @@ public:
            printf("genesis: %s \n", genesis.ToString().c_str());
         }
 
-        genesis = CreateGenesisBlock(0, nGenesisTime, 4800, 0x1f00ffff, 1, 0 * COIN);
+        genesis = CreateGenesisBlock(0, nGenesisTime, 4294808742, 0x1f00ffff, 1, 0 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("a66c96611afb8e0719b904084be11d6599daa4d87a32dcdab2a479850c5f6f5f"));
+        assert(consensus.hashGenesisBlock == uint256S("5a7ab840e09820f3d81a5f9b1131a3b8f7e4eb86e3b59be9fa82fc35a74889a1"));
         assert(genesis.hashMerkleRoot == uint256S("8daa6d63f022e999a8d5bf389f3b7edc1ad48b89d139bafa2823d4b3d55bae55"));
 
         // vSeeds.emplace_back("");
